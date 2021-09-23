@@ -1,21 +1,24 @@
 import VueRouter from "vue-router";
+import Vue from "vue";
 
+Vue.use(VueRouter);
+const Foo = { template: "<div>foo</div>" };
 const router = new VueRouter({
   mode: "history",
   base: "loaa",
   routes: [
     {
-      path: "/src/pages/home",
+      path: "/home",
       component: () => import("../pages/home.vue"),
       name: "home",
     },
     {
-      path: "/src/pages/character-search",
+      path: "/character-search",
       component: () => import("../pages/character-search.vue"),
       name: "character-search",
     },
     {
-      path: "/src/pages/dungeon-counter",
+      path: "/dungeon-counter",
       component: () => import("../pages/dungeon-counter.vue"),
       name: "dungeon-counter",
     },
