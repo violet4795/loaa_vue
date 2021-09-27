@@ -3,9 +3,7 @@
     <main-header></main-header>
     <div>
       <div>
-        ddd
         <router-view />
-        여긴데
       </div>
     </div>
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
