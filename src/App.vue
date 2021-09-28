@@ -29,7 +29,16 @@ export default class App extends Vue {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   text-align: center;
   color: #2c3e50;
+}
+html,
+body {
+  height: 100%;
+  background-color: #00000099;
+}
+.inline {
+  display: inline-block !important; // vuetify에 의해 변경되지 않도록 수정
 }
 </style>
