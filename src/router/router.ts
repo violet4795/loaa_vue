@@ -1,8 +1,28 @@
-import VueRouter from "vue-router";
+import VueRouter, { RawLocation, Route } from "vue-router";
 import Vue from "vue";
 
 Vue.use(VueRouter);
-const Foo = { template: "<div>foo</div>" };
+
+const originalPush = VueRouter.prototype.push;
+
+VueRouter.prototype.push = async function push(
+  location: RawLocation
+): Promise<Route> {
+  try {
+    return await originalPush.bind(this)(location);
+  } catch (e) {
+    if (e?.name === "NavigationDuplicated") {
+      console.warn(e);
+      return e;
+    } else {
+      throw e;
+    }
+  }
+};
+
+// https://stackoverflow.com/questions/57837758/navigationduplicated-navigating-to-current-location-search-is-not-allowed
+// thx
+
 const router = new VueRouter({
   mode: "history",
   base: "loaa",
