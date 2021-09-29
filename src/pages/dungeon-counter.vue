@@ -19,8 +19,18 @@
         <tbody>
           <tr v-for="dungeon in dungeons" :key="dungeon.dungeonName">
             <td>{{ dungeon.dungeonName }}</td>
+
             <td v-for="character in characters" v-bind:key="character">
-              <v-checkbox class="inline"></v-checkbox>
+              <v-checkbox
+                v-if="dungeon.initCycle == 7"
+                class="inline"
+              ></v-checkbox>
+              <daily-dungeon-button
+                :count="dungeon.executeCount"
+                :value="33"
+                v-if="dungeon.initCycle == 1"
+                class="inline"
+              ></daily-dungeon-button>
             </td>
           </tr>
         </tbody>
@@ -31,8 +41,9 @@
 <script lang='ts'>
 import { Component, Vue } from "vue-property-decorator";
 import { dungeon } from "../components/models/characters-model";
+import DailyDungeonButton from "../components/main/daily-dungeon-button.vue";
 @Component({
-  components: {}
+  components: { DailyDungeonButton }
 })
 export default class App extends Vue {
   data: String = "dd";
