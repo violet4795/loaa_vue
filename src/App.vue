@@ -41,4 +41,7 @@ body {
 .inline {
   display: inline-block !important; // vuetify에 의해 변경되지 않도록 수정
 }
+.mt-5 {
+  margin-top: 5px;
+}
 </style>

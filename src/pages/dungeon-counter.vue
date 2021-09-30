@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-simple-table dark>
+    <v-simple-table :fixed-header="true" dark>
       <template v-slot:default>
         <thead>
           <tr>
@@ -20,14 +20,18 @@
           <tr v-for="dungeon in dungeons" :key="dungeon.dungeonName">
             <td>{{ dungeon.dungeonName }}</td>
 
-            <td v-for="character in characters" v-bind:key="character">
+            <td
+              style="{height:100px}"
+              v-for="character in characters"
+              v-bind:key="character"
+            >
               <v-checkbox
                 v-if="dungeon.initCycle == 7"
                 class="inline"
               ></v-checkbox>
               <daily-dungeon-button
                 :count="dungeon.executeCount"
-                :value="33"
+                :value="30"
                 v-if="dungeon.initCycle == 1"
                 class="inline"
               ></daily-dungeon-button>
@@ -40,14 +44,14 @@
 </template>
 <script lang='ts'>
 import { Component, Vue } from "vue-property-decorator";
-import { dungeon } from "../components/models/characters-model";
+import { Dungeon, CharacterData } from "../components/models/characters-model";
 import DailyDungeonButton from "../components/main/daily-dungeon-button.vue";
 @Component({
   components: { DailyDungeonButton }
 })
 export default class App extends Vue {
   data: String = "dd";
-  dungeons: Array<dungeon> = [
+  dungeons: Array<Dungeon> = [
     {
       dungeonCode: "ChaosDungeon",
       dungeonName: "ChaosDungeon",
@@ -145,6 +149,7 @@ export default class App extends Vue {
     "보통의",
     "슈수수"
   ];
+  characterData: Array<CharacterData> = [];
   created() {}
 }
 </script>

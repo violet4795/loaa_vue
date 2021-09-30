@@ -1,5 +1,13 @@
 module.exports = {
-  transpileDependencies: [
-    'vuetify'
-  ]
-}
+  transpileDependencies: ["vuetify"],
+  devServer: {
+    proxy: {
+      "/": {
+        target: "https://lostark.game.onstove.com",
+        pathRewrite: { "^/": "" },
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
+};
