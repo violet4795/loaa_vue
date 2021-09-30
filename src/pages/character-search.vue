@@ -12,6 +12,11 @@ import axios from "axios";
   components: {}
 })
 export default class App extends Vue {
+  /* 
+  read this doc 
+  https://ichi.pro/ko/vue-js-baeg-endeu-seobeolo-peulogsihaneun-bangbeob-181843460187627
+  
+   */
   id: String = "";
   async goCrawl() {
     // console.log(
@@ -20,7 +25,7 @@ export default class App extends Vue {
     let characterData: any;
     try {
       characterData = await axios.get(
-        "/Profile/Character/%EC%8A%88%EC%88%98%EC%88%98"
+        "/lostark/Profile/Character/%EC%8A%88%EC%88%98%EC%88%98"
       );
       // characterData = await axios.get(
       //   encodeURI(
