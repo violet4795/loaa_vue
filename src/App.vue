@@ -1,12 +1,14 @@
 <template>
   <div id="app">
-    <main-header></main-header>
-    <div>
+    <v-app>
+      <main-header></main-header>
       <div>
-        <router-view />
+        <div>
+          <router-view />
+        </div>
       </div>
-    </div>
-    <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
+      <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
+    </v-app>
   </div>
 </template>
 

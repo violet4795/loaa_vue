@@ -1,26 +1,72 @@
 <template>
   <div>
-    <v-card>
-      <input type="text" v-model="id" />
-      <button @click="goCrawl">검색</button>
+    <v-card dark>
+      <v-card dark>
+        <div>
+          <span class="inline"
+            ><v-text-field
+              placeholder="캐릭터 명 입력"
+              background-color="white"
+              v-model="id"
+            ></v-text-field>
+          </span>
+          <!-- <input type="text" ckass="theme--dark v-text-field" v-model="id" /> -->
+          <button @click="goCrawl">검색</button>
+        </div>
+      </v-card>
+
+      <v-card dark max-width="1000" class="d-flex justify-center">
+        보유캐릭터
+        {{ data }}
+        <!-- <v-container>
+          <v-row>
+            <v-col>1</v-col>
+            <v-col>2</v-col>
+          </v-row>
+          <v-row>
+            <v-col>1</v-col>
+            <v-col>2</v-col>
+          </v-row>
+        </v-container> -->
+        <!-- <v-simple-table dark>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th class="text-left">
+                  ID
+                </th>
+                <th class="text-left"></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </template>
+        </v-simple-table> -->
+
+        <!-- {{ data }} -->
+      </v-card>
     </v-card>
   </div>
 </template>
 <script lang='ts'>
 import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
-// import cheerio from "cheerio";
+import cheerio, { CheerioAPI } from "cheerio";
 @Component({
   components: {}
 })
 export default class App extends Vue {
   id: String = "";
+  data: any = "";
+  html: CheerioAPI = cheerio;
   async goCrawl() {
     let characterData: any;
 
     try {
       characterData = await axios.get(`/lostark/Profile/Character/${this.id}`);
       console.log(characterData);
+      this.data = characterData.data;
+      this.html = cheerio.load(this.data);
+      this.html;
     } catch (error) {
       console.log(error);
     }
