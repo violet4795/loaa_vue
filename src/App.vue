@@ -1,10 +1,8 @@
 <template>
   <component :is="resolveLayout">
-    <v-app>
-      <!-- <main-header></main-header> -->
-      <router-view />
-      <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
-    </v-app>
+    <!-- <main-header></main-header> -->
+    <router-view />
+    <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
   </component>
 </template>
 
