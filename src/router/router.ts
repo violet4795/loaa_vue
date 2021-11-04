@@ -28,6 +28,10 @@ const router = new VueRouter({
   base: "loaa",
   routes: [
     {
+      path: "/",
+      redirect: "dashboard",
+    },
+    {
       path: "/home",
       component: () => import("../pages/home.vue"),
       name: "home",
@@ -41,6 +45,11 @@ const router = new VueRouter({
       path: "/dungeon-counter",
       component: () => import("../pages/dungeon-counter.vue"),
       name: "dungeon-counter",
+    },
+    {
+      path: "/dashboard",
+      component: () => import("../pages/dashboard/Dashboard.vue"),
+      name: "dashboard",
     },
   ],
 });
