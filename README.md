@@ -1,24 +1,14 @@
 # loaa_vue
 
-## Project setup
-```
-yarn install
-```
+crawling lostark homepage
+management homework
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## reference
 
-### Compiles and minifies for production
-```
-yarn build
-```
+https://github.com/Armour/vue-typescript-admin-template.git
+ref routing, structural design
 
-### Lints and fixes files
-```
-yarn lint
-```
+https://github.com/themeselection/materio-vuetify-vuejs-admin-template-free.git
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+ref css, design Vuetify
+migration Composition API to Optional API

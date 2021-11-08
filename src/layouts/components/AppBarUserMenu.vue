@@ -16,11 +16,7 @@
         class="ms-4"
         dot
       >
-        <v-avatar
-          size="40px"
-          v-bind="attrs"
-          v-on="on"
-        >
+        <v-avatar size="40px" v-bind="attrs" v-on="on">
           <v-img :src="require('@/assets/images/avatars/1.png')"></v-img>
         </v-avatar>
       </v-badge>
@@ -89,12 +85,7 @@
         </v-list-item-content>
 
         <v-list-item-action>
-          <v-badge
-            inline
-            color="error"
-            content="2"
-          >
-          </v-badge>
+          <v-badge inline color="error" content="2"> </v-badge>
         </v-list-item-action>
       </v-list-item>
 
@@ -162,24 +153,24 @@ import {
   mdiCogOutline,
   mdiCurrencyUsd,
   mdiHelpCircleOutline,
-  mdiLogoutVariant,
-} from '@mdi/js'
+  mdiLogoutVariant
+} from "@mdi/js";
+import { Component, Vue } from "vue-property-decorator";
 
-export default {
-  setup() {
-    return {
-      icons: {
-        mdiAccountOutline,
-        mdiEmailOutline,
-        mdiCheckboxMarkedOutline,
-        mdiChatOutline,
-        mdiCogOutline,
-        mdiCurrencyUsd,
-        mdiHelpCircleOutline,
-        mdiLogoutVariant,
-      },
-    }
-  },
+@Component({
+  components: {}
+})
+export default class App extends Vue {
+  icons = {
+    mdiAccountOutline,
+    mdiEmailOutline,
+    mdiCheckboxMarkedOutline,
+    mdiChatOutline,
+    mdiCogOutline,
+    mdiCurrencyUsd,
+    mdiHelpCircleOutline,
+    mdiLogoutVariant
+  };
 }
 </script>
 

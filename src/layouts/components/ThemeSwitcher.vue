@@ -10,17 +10,17 @@
 </template>
 
 <script>
-import { mdiWeatherNight, mdiWeatherSunny } from '@mdi/js'
+import { mdiWeatherNight, mdiWeatherSunny } from "@mdi/js";
+import { Component, Vue } from "vue-property-decorator";
 
-export default {
-  setup() {
-    return {
-      icons: {
-        mdiWeatherNight,
-        mdiWeatherSunny,
-      },
-    }
-  },
+@Component({
+  components: {}
+})
+export default class App extends Vue {
+  icons = {
+    mdiWeatherNight,
+    mdiWeatherSunny
+  };
 }
 </script>
 

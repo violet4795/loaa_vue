@@ -5,10 +5,7 @@
     active-class="bg-gradient-primary white--text"
   >
     <v-list-item-icon>
-      <v-icon
-        :class="{'alternate-icon-small': !icon}"
-        class="mx-auto"
-      >
+      <v-icon :class="{ 'alternate-icon-small': !icon }" class="mx-auto">
         {{ icon || alternateIcon }}
       </v-icon>
     </v-list-item-icon>
@@ -20,24 +17,20 @@
 </template>
 
 <script>
-import { mdiCheckboxBlankCircleOutline } from '@mdi/js'
+import { mdiCheckboxBlankCircleOutline } from "@mdi/js";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
-export default {
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    icon: {
-      type: String,
-      default: undefined,
-    },
-  },
-  setup() {
-    return {
-      alternateIcon: mdiCheckboxBlankCircleOutline,
-    }
-  },
+@Component({
+  components: {
+    mdiCheckboxBlankCircleOutline
+  }
+})
+export default class App extends Vue {
+  @Prop({ type: String, required: true }) title;
+
+  @Prop({ type: String, default: undefined }) icon;
+
+  alternateIcon = mdiCheckboxBlankCircleOutline;
 }
 </script>
 

@@ -1,51 +1,50 @@
 <template>
-  <div>
-    <v-simple-table :fixed-header="true" dark>
-      <template v-slot:default>
-        <thead>
-          <tr>
-            <th class="text-left">
-              던전
-            </th>
-            <th
-              v-for="character in characters"
-              v-bind:key="character"
-              class="text-left"
-            >
-              {{ character }}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="dungeon in dungeons" :key="dungeon.dungeonName">
-            <td>{{ dungeon.dungeonName }}</td>
+  <v-simple-table fixed-header height="500" dark>
+    <template v-slot:default>
+      <thead>
+        <tr>
+          <th class="text-left">
+            던전
+          </th>
+          <th
+            v-for="character in characters"
+            v-bind:key="character"
+            class="text-left"
+          >
+            {{ character }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="dungeon in dungeons" :key="dungeon.dungeonName">
+          <td>{{ dungeon.dungeonName }}</td>
 
-            <td
-              style="{height:100px}"
-              v-for="character in characters"
-              v-bind:key="character"
-            >
-              <v-checkbox
-                v-if="dungeon.initCycle == 7"
-                class="inline"
-              ></v-checkbox>
-              <daily-dungeon-button
-                :count="dungeon.executeCount"
-                :value="30"
-                v-if="dungeon.initCycle == 1"
-                class="inline"
-              ></daily-dungeon-button>
-            </td>
-          </tr>
-        </tbody>
-      </template>
-    </v-simple-table>
-  </div>
+          <td
+            style="{height:100px}"
+            v-for="character in characters"
+            v-bind:key="character"
+          >
+            <v-checkbox
+              v-if="dungeon.initCycle == 7"
+              class="inline"
+            ></v-checkbox>
+            <daily-dungeon-button
+              :count="dungeon.executeCount"
+              :value="30"
+              v-if="dungeon.initCycle == 1"
+              class="inline"
+            ></daily-dungeon-button>
+          </td>
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
 </template>
 <script lang='ts'>
 import { Component, Vue } from "vue-property-decorator";
-import { Dungeon, CharacterData } from "../components/models/characters-model";
-import DailyDungeonButton from "../components/main/daily-dungeon-button.vue";
+import { Dungeon, CharacterData } from "@/components/models/characters-model";
+import DailyDungeonButton from "@/components/main/daily-dungeon-button.vue";
+
 @Component({
   components: { DailyDungeonButton }
 })
@@ -54,7 +53,7 @@ export default class App extends Vue {
   dungeons: Array<Dungeon> = [
     {
       dungeonCode: "ChaosDungeon",
-      dungeonName: "ChaosDungeon",
+      dungeonName: "Chaos Dungeon",
       dungeonType: "ChaosDungeon",
       minLevel: 1,
       maxLevel: 9999,
@@ -74,7 +73,7 @@ export default class App extends Vue {
     },
     {
       dungeonCode: "EphonaQuest",
-      dungeonName: "EphonaQuest",
+      dungeonName: "Ephona Quest",
       dungeonType: "EphonaQuest",
       minLevel: 1,
       maxLevel: 9999,
@@ -120,7 +119,7 @@ export default class App extends Vue {
     },
     {
       dungeonCode: "CommanderLaid1475",
-      dungeonName: "Kouku-Saton",
+      dungeonName: "Kouku Saton",
       dungeonType: "CommanderLaid",
       minLevel: 1475,
       maxLevel: 9999,
@@ -150,7 +149,6 @@ export default class App extends Vue {
     "슈수수"
   ];
   characterData: Array<CharacterData> = [];
-  created() {}
 }
 </script>
 <style lang='scss'>

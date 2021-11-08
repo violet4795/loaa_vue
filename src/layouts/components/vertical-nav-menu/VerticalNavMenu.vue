@@ -2,6 +2,7 @@
   <v-navigation-drawer
     :value="isDrawerOpen"
     app
+    temporary
     floating
     width="260"
     class="app-navigation-menu"
@@ -9,48 +10,26 @@
     @input="val => $emit('update:is-drawer-open', val)"
   >
     <!-- Navigation Header -->
-    <div class="vertical-nav-header d-flex items-center ps-6 pe-5 pt-5 pb-2">
-      <router-link
-        to="/"
-        class="d-flex align-center text-decoration-none"
-      >
-        <v-img
-          :src="require('@/assets/images/logos/logo.svg')"
-          max-height="30px"
-          max-width="30px"
-          alt="logo"
-          contain
-          eager
-          class="app-logo me-3"
-        ></v-img>
-        <v-slide-x-transition>
-          <h2 class="app-title text--primary">
-            MATERIO
-          </h2>
-        </v-slide-x-transition>
-      </router-link>
-    </div>
 
     <!-- Navigation Items -->
-    <v-list
-      expand
-      shaped
-      class="vertical-nav-menu-items pr-5"
-    >
+    <v-list expand shaped class="vertical-nav-menu-items pr-5">
       <nav-menu-link
-        title="Dashboard"
-        :to="{ name: 'dashboard' }"
-        :icon="icons.mdiHomeOutline"
+        title="로그인"
+        :icon="icons.mdiLogin"
+        :to="{ name: 'login' }"
+      ></nav-menu-link>
+      <!-- :icon="icons.mdiHomeOutline"-->
+      <nav-menu-link
+        title="캐릭터 조회"
+        :to="{ name: 'character-search' }"
+        :icon="icons.mdiAccountSearch"
       ></nav-menu-link>
       <nav-menu-link
-        title="Account Settings"
-        :to="{ name: 'pages-account-settings'}"
-        :icon="icons.mdiAccountCogOutline"
+        title="휴식게이지 관리"
+        :to="{ name: 'dungeon-counter' }"
+        :icon="icons.mdiPacMan"
       ></nav-menu-link>
-      <nav-menu-group
-        title="Pages"
-        :icon="icons.mdiFileOutline"
-      >
+      <!-- <nav-menu-group title="Pages" :icon="icons.mdiFileOutline">
         <nav-menu-link
           title="Login"
           :to="{ name: 'pages-login' }"
@@ -66,8 +45,8 @@
           :to="{ name: 'error-404' }"
           target="_blank"
         ></nav-menu-link>
-      </nav-menu-group>
-      <nav-menu-section-title title="USER INTERFACE"></nav-menu-section-title>
+      </nav-menu-group> -->
+      <!-- <nav-menu-section-title title="USER INTERFACE"></nav-menu-section-title>
       <nav-menu-link
         title="Typography"
         :to="{ name: 'typography' }"
@@ -92,26 +71,31 @@
         title="Form Layouts"
         :to="{ name: 'form-layouts' }"
         :icon="icons.mdiFormSelect"
-      ></nav-menu-link>
+      ></nav-menu-link> -->
     </v-list>
-    <a
+    <!-- <a
       href="https://themeselection.com/products/materio-vuetify-vuejs-admin-template"
       target="_blank"
       rel="nofollow"
     >
       <v-img
-        :src="require(`@/assets/images/pro/upgrade-banner-${$vuetify.theme.dark ? 'dark' : 'light'}.png`)"
+        :src="
+          require(`@/assets/images/pro/upgrade-banner-${
+            $vuetify.theme.dark ? 'dark' : 'light'
+          }.png`)
+        "
         alt="upgrade-banner"
         transition="scale-transition"
         class="upgrade-banner mx-auto"
         max-width="230"
       ></v-img>
-    </a>
+    </a> -->
   </v-navigation-drawer>
 </template>
 
 <script>
 // eslint-disable-next-line object-curly-newline
+import { Component, Prop, Vue } from "vue-property-decorator";
 import {
   mdiHomeOutline,
   mdiAlphaTBoxOutline,
@@ -121,37 +105,40 @@ import {
   mdiFileOutline,
   mdiFormSelect,
   mdiAccountCogOutline,
-} from '@mdi/js'
-import NavMenuSectionTitle from './components/NavMenuSectionTitle.vue'
-import NavMenuGroup from './components/NavMenuGroup.vue'
-import NavMenuLink from './components/NavMenuLink.vue'
+  mdiPacMan,
+  mdiAccountSearch,
+  mdiLogin
+} from "@mdi/js";
+import NavMenuSectionTitle from "./components/NavMenuSectionTitle.vue";
+import NavMenuGroup from "./components/NavMenuGroup.vue";
+import NavMenuLink from "./components/NavMenuLink.vue";
 
-export default {
+@Component({
   components: {
     NavMenuSectionTitle,
     NavMenuGroup,
     NavMenuLink,
-  },
-  props: {
-    isDrawerOpen: {
-      type: Boolean,
-      default: null,
-    },
-  },
-  setup() {
-    return {
-      icons: {
-        mdiHomeOutline,
-        mdiAlphaTBoxOutline,
-        mdiEyeOutline,
-        mdiCreditCardOutline,
-        mdiTable,
-        mdiFileOutline,
-        mdiFormSelect,
-        mdiAccountCogOutline,
-      },
-    }
-  },
+    mdiPacMan,
+    mdiAccountSearch,
+    mdiLogin
+  }
+})
+export default class App extends Vue {
+  @Prop({ type: Boolean, default: false }) isDrawerOpen;
+
+  icons = {
+    mdiHomeOutline,
+    mdiAlphaTBoxOutline,
+    mdiEyeOutline,
+    mdiCreditCardOutline,
+    mdiTable,
+    mdiFileOutline,
+    mdiFormSelect,
+    mdiAccountCogOutline,
+    mdiPacMan,
+    mdiAccountSearch,
+    mdiLogin
+  };
 }
 </script>
 
@@ -174,7 +161,7 @@ export default {
 }
 
 @include theme(app-navigation-menu) using ($material) {
-  background-color: map-deep-get($material, 'background');
+  background-color: map-deep-get($material, "background");
 }
 
 .app-navigation-menu {

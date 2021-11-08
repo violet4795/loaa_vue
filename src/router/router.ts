@@ -1,5 +1,10 @@
-import VueRouter, { RawLocation, Route } from "vue-router";
+import VueRouter, { RawLocation, RouteConfig, Route } from "vue-router";
 import Vue from "vue";
+
+/* Layout */
+import Layout from "@/layout/index.vue";
+import LayoutBlank from "@/layouts/Blank.vue";
+import LayoutContent from "@/layouts/Content.vue";
 
 Vue.use(VueRouter);
 
@@ -22,36 +27,84 @@ VueRouter.prototype.push = async function push(
 
 // https://stackoverflow.com/questions/57837758/navigationduplicated-navigating-to-current-location-search-is-not-allowed
 // thx
+export const constRoutes: RouteConfig[] = [
+  {
+    path: "/home",
+    component: LayoutContent, //() => import("../pages/home.vue"),
+    redirect: "noredirect",
+    name: "home",
+    children: [
+      {
+        path: "/",
+        component: () =>
+          import(/* webpackChunkName: "redirect" */ "@/pages/home.vue"),
+      },
+    ],
+  },
+  {
+    path: "/character-search",
+    component: LayoutContent,
+    children: [
+      {
+        name: "character-search",
+        path: "/",
+        component: () =>
+          import(
+            /* webpackChunkName: "redirect" */ "@/pages/character-search.vue"
+          ),
+      },
+    ],
+  },
+  {
+    path: "/dungeon-counter",
+    component: LayoutContent,
+    children: [
+      {
+        name: "dungeon-counter",
+        path: "/index",
+        component: () =>
+          import(
+            /* webpackChunkName: "redirect" */ "@/pages/dungeon-counter/index.vue"
+          ),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    component: LayoutContent,
+    name: "dashboard",
+    children: [
+      {
+        path: "/redirect/:path(.*)",
+        component: () =>
+          import(
+            /* webpackChunkName: "redirect" */ "@/pages/dashboard/dashboard.vue"
+          ),
+      },
+    ],
+  },
+  {
+    path: "/login",
+    component: LayoutBlank,
+    name: "login",
+    children: [
+      {
+        path: "/redirect/:path(.*)",
+        component: () =>
+          import(/* webpackChunkName: "redirect" */ "@/pages/login.vue"),
+      },
+    ],
+  },
+  {
+    path: "/",
+    redirect: "dashboard",
+  },
+];
 
 const router = new VueRouter({
   mode: "history",
   base: "loaa",
-  routes: [
-    {
-      path: "/",
-      redirect: "dashboard",
-    },
-    {
-      path: "/home",
-      component: () => import("../pages/home.vue"),
-      name: "home",
-    },
-    {
-      path: "/character-search",
-      component: () => import("../pages/character-search.vue"),
-      name: "character-search",
-    },
-    {
-      path: "/dungeon-counter",
-      component: () => import("../pages/dungeon-counter.vue"),
-      name: "dungeon-counter",
-    },
-    {
-      path: "/dashboard",
-      component: () => import("../pages/dashboard/Dashboard.vue"),
-      name: "dashboard",
-    },
-  ],
+  routes: constRoutes,
 });
 
 export default router;

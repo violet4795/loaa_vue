@@ -1,55 +1,16 @@
 <template>
-  <component :is="resolveLayout">
-    <!-- <main-header></main-header> -->
-    <router-view />
-    <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
-  </component>
+  <router-view />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import MainHeader from "./components/main/main-header.vue";
-import LayoutBlank from "@/layouts/Blank.vue";
-import LayoutContent from "@/layouts/Content.vue";
 // import { computed } from "@vue/composition-api";
 // import { useRouter } from "@/utils";
 
 @Component({
-  components: {
-    LayoutBlank,
-    LayoutContent,
-    MainHeader
-  }
+  name: "App"
 })
-export default class App extends Vue {
-  stateNumber: number = 0;
-
-  route = this.$route;
-  resolveLayout() {
-    // Handles initial route
-    if (this.route.name === null) return null;
-
-    if (this.route.meta?.layout === "blank") return "layout-blank";
-
-    return "layout-content";
-  }
-  // setup() {
-  //   const { route } = useRouter()
-
-  //   const resolveLayout = computed(() => {
-  //     // Handles initial route
-  //     if (route.value.name === null) return null
-
-  //     if (route.value.meta.layout === 'blank') return 'layout-blank'
-
-  //     return 'layout-content'
-  //   })
-
-  //   return {
-  //     resolveLayout,
-  //   }
-  // },
-}
+export default class App extends Vue {}
 </script>                                                                                        
 
 <style lang="scss">
