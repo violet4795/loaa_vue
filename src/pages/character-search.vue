@@ -6,8 +6,9 @@
           <span class="inline"
             ><v-text-field
               placeholder="캐릭터 명 입력"
-              background-color="white"
+              color="black"
               v-model="id"
+              dark
             ></v-text-field>
           </span>
           <!-- <input type="text" ckass="theme--dark v-text-field" v-model="id" /> -->

@@ -1,80 +1,36 @@
 <template>
-  <div class="mt-5">
-    <v-icon color="primary">
-      {{ getIcon }}
+  <div class="mt-1 mb-1">
+    <v-icon @click="plus" size="20" color="primary">
+      {{ icons.mdiChevronUpCircle }}
     </v-icon>
-    <!-- <v-rating
-      background-color="warning lighten-1"
-      color="primary"
-      :empty-icon="icons.mdiCheckboxBlankCircleOutline"
-      :full-icon="icons.mdiCircle"
-      :half-icon="icons.mdiCircleHalfFull"
-      half-increments
-      hover
-      length="5"
-      size="30"
-      :value="5"
-    ></v-rating> -->
-    <!-- <v-checkbox class="inline" @change="clickCheck($event)"></v-checkbox>
-    <div>
-      <button text="+10" @click="dfdf">
-        dfdf
-      </button>
-    </div>
-    <v-text-field v-model="thisValue" height="10"></v-text-field> -->
+    <v-input class="justify-center">
+      {{ this.propValue }}
+    </v-input>
+    <v-icon @click="minus" size="20" color="primary">
+      {{ icons.mdiChevronDownCircle }}
+    </v-icon>
   </div>
 </template>
 <script lang='ts'>
-import { Component, Vue, Prop, PropSync } from "vue-property-decorator";
-import {
-  mdiBatteryRemoveOutline,
-  mdiBattery10,
-  mdiBattery20,
-  mdiBattery30,
-  mdiBattery40,
-  mdiBattery50,
-  mdiBattery60,
-  mdiBattery70,
-  mdiBattery80,
-  mdiBattery90,
-  mdiBattery
-} from "@mdi/js";
+import { Component, Vue, PropSync } from "vue-property-decorator";
+import { mdiChevronUpCircle, mdiChevronDownCircle } from "@mdi/js";
 
 @Component({
   components: {}
 })
 export default class App extends Vue {
-  @Prop({ default: 2 })
-  @PropSync("value")
-  value: number = 0;
-
-  icons: any = {
-    mdiBatteryRemoveOutline,
-    mdiBattery10,
-    mdiBattery20,
-    mdiBattery30,
-    mdiBattery40,
-    mdiBattery50,
-    mdiBattery60,
-    mdiBattery70,
-    mdiBattery80,
-    mdiBattery90,
-    mdiBattery
+  @PropSync("value", { type: Number })
+  propValue!: number;
+  icons = {
+    mdiChevronUpCircle,
+    mdiChevronDownCircle
   };
-
-  asdf = 20;
-  valueArray = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
-
-  get getIcon() {
-    if (this.value == 100) return this.icons["mdiBattery"];
-    else return this.icons["mdiBattery" + this.value]; //[`mdiBattery${this.value}`];
+  minus() {
+    this.propValue = this.propValue - 20 >= 0 ? this.propValue - 20 : 0;
   }
-
-  dfdf() {
-    console.log("e");
-    this.asdf += 10;
+  plus() {
+    this.propValue = this.propValue + 10 <= 100 ? this.propValue + 10 : 100;
   }
-
   // clickCheck(e: boolean) {
   //   let x = this.thisValue - Math.floor(this.thisValue / 20) * 20;
   //   if (e) {
@@ -94,5 +50,19 @@ export default class App extends Vue {
   // }
 }
 </script>
-<style lang='scss'>
+<style lang='scss' scoped>
+.justify-center {
+  .v-input__control > .v-input__slot {
+    display: flex !important;
+    justify-content: center !important;
+  }
+  // display: block !important;
+
+  max-height: 20px;
+
+  text-align: center !important;
+  margin-bottom: 0px !important;
+  margin-right: 0px;
+  justify-content: center;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app max-height="inherit">
     <vertical-nav-menu :is-drawer-open.sync="isDrawerOpen"></vertical-nav-menu>
 
     <v-app-bar app flat absolute color="transparent" hide-on-scroll>
@@ -81,9 +81,11 @@
       </div> -->
     </v-main>
 
-    <v-footer app inset color="transparent" absolute height="56" class="px-0">
+    <!-- TODO : 추후 추가예정
+      
+      <v-footer app inset color="transparent" absolute height="56" class="px-0">
       <div class="boxed-container w-full">
-        <!-- <div class="mx-6 d-flex justify-space-between">
+         <div class="mx-6 d-flex justify-space-between">
           <span>
             &copy; 2021
             <a
@@ -113,9 +115,9 @@
               >MIT Licence</a
             >
           </span>
-        </div> -->
+        </div> 
       </div>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 
