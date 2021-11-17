@@ -10,7 +10,7 @@
       <v-divider class="mx-4" vertical></v-divider>
       <v-btn text @click="go('-1')">각인 계산기</v-btn>
       <v-divider class="mx-4" vertical></v-divider>
-      <v-btn text @click="go('dungeon-counter')">휴식게이지 관리</v-btn>
+      <v-btn text @click="go('homework-counter')">휴식게이지 관리</v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>

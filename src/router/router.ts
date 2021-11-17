@@ -56,15 +56,15 @@ export const constRoutes: RouteConfig[] = [
     ],
   },
   {
-    path: "/dungeon-counter",
+    path: "/homework-counter",
     component: LayoutContent,
     children: [
       {
-        name: "dungeon-counter",
+        name: "homework-counter",
         path: "/index",
         component: () =>
           import(
-            /* webpackChunkName: "redirect" */ "@/pages/dungeon-counter/index.vue"
+            /* webpackChunkName: "redirect" */ "@/pages/homework-counter/index.vue"
           ),
       },
     ],

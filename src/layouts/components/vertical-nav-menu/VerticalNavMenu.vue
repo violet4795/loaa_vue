@@ -26,7 +26,7 @@
       ></nav-menu-link>
       <nav-menu-link
         title="휴식게이지 관리"
-        :to="{ name: 'dungeon-counter' }"
+        :to="{ name: 'homework-counter' }"
         :icon="icons.mdiPacMan"
       ></nav-menu-link>
       <!-- <nav-menu-group title="Pages" :icon="icons.mdiFileOutline">
