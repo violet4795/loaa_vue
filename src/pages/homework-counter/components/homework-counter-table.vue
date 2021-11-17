@@ -67,9 +67,16 @@ export default class App extends Vue {
   characterData: Array<CharacterData> = [];
 
   async created() {
-    const result = await axios.get(`/api/homeworkList`);
-    this.homeworks = result.data;
-    console.log(this.homeworks);
+    const result = await axios.get(`/api/homeworkList`, {
+      validateStatus: function(status) {
+        if (status == 500) {
+          // alert("백엔드 서버가 꺼져있네요. 지금은 안된다는 뭐 그런거죠.");
+          return false;
+        } else return true;
+      }
+    });
+    this.homeworks = result ? result.data : {};
+    // console.log(this.homeworks);
   }
 }
 </script>

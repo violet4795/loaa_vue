@@ -70,6 +70,20 @@ export const constRoutes: RouteConfig[] = [
     ],
   },
   {
+    path: "/DPM-calculator",
+    component: LayoutContent,
+    children: [
+      {
+        name: "DPM-calculator",
+        path: "/index",
+        component: () =>
+          import(
+            /* webpackChunkName: "redirect" */ "@/pages/DPM-calculator/index.vue"
+          ),
+      },
+    ],
+  },
+  {
     path: "/dashboard",
     component: LayoutContent,
     name: "dashboard",
@@ -97,7 +111,7 @@ export const constRoutes: RouteConfig[] = [
   },
   {
     path: "/",
-    redirect: "dashboard",
+    redirect: "DPM-calculator",
   },
 ];
 
