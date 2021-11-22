@@ -22,6 +22,12 @@ export class Homework {
   // `cycle` INT NOT NULL COMMENT 'daily, weekly',
 }
 
+export class Character {
+  characterName: String = ""; // 캐릭터 이름
+  characterKey: String = ""; // 캐릭터 고유키
+  characterLevel: number = 0; // 레벨
+  userExpeditionId: String = ""; // 원정대 아이디
+}
 export class CharacterData {
   characterId: String = ""; // 캐릭터 아이디
   key: String = ""; //캐릭터 구분 키

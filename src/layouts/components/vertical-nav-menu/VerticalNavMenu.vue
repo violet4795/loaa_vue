@@ -29,11 +29,11 @@
         :to="{ name: 'homework-counter' }"
         :icon="icons.mdiPacMan"
       ></nav-menu-link>
-      <nav-menu-link
+      <!-- <nav-menu-link
         title="DPM 계산기"
         :to="{ name: 'DPM-calculator' }"
         :icon="icons.mdiCalculator"
-      ></nav-menu-link>
+      ></nav-menu-link> -->
       <!-- <nav-menu-group title="Pages" :icon="icons.mdiFileOutline">
         <nav-menu-link
           title="Login"
